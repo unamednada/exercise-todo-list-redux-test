@@ -1,14 +1,16 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
-
-afterEach(cleanup);
 
 // arquivo App.test.js pode servir de exemplo
 describe('Teste da aplicação, testando o botão e sua funcionalidade', () => {
   test('Verificando se o botão está na tela e se o ele contém o texto "Adicionar"', () => {
-    const {getByText} = render(<App />);
-
+    render(<App />);
+    const addBtn = screen.getByRole('button', {
+      name: "Adicionar",
+    });
+    expect(addBtn).not.toBeNull();
   });
 
   test(`Ao clicar no botão, é necessário adicionar o que o usuário digitou à lista`, () => {
