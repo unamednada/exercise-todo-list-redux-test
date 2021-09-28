@@ -28,4 +28,24 @@ describe('Teste da aplicação, testando o botão e sua funcionalidade', () => {
     const task = screen.getByText('Estudar');
     expect(task).not.toBeNull();
   });
+
+  test('Ao adicionar múltiplas tarefas, elas são renderizadas na tela', () => {
+    render(<App />);
+    const input = screen.getByLabelText(/tarefa/i);
+    expect(input).toBeInTheDocument();
+    const addBtn = screen.getByRole('button', {
+      name: "Adicionar",
+    });
+    userEvent.type(input, 'Estudar');
+    userEvent.click(addBtn);
+    
+    userEvent.type(input, 'Exercícios');
+    userEvent.click(addBtn);
+    
+    userEvent.type(input, 'Lazer');
+    userEvent.click(addBtn);
+    
+    const taskList = screen.getAllByRole('listitem');
+    expect(taskList.length).toBe(3);
+  })
 });
