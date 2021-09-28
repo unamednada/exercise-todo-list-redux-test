@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Item from '../Item';
-
-afterEach(cleanup);
 
 describe('Teste do campo de input', () => {
   test('Testando a adição de vários itens a aplicação', () => {
