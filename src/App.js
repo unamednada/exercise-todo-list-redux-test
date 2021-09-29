@@ -8,6 +8,7 @@ class App extends Component {
 
     this.state = {
       listTodo: [],
+      selected: null,
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -15,6 +16,15 @@ class App extends Component {
 
   addTodo(todo) {
     this.setState((state) => ({ listTodo: [...state.listTodo, todo] }));
+  }
+
+  removeItem() {
+    const { selected, listTodo } = this.state;
+    listTodo.splice(listTodo.indexOf(selected), 1);
+    this.setState({
+      listTodo,
+      selected: null,
+    });
   }
 
   render() {
