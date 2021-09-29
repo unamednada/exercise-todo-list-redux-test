@@ -21,6 +21,8 @@ describe('Teste do campo de input', () => {
 
 describe('Teste do componente Item', () => {
   test('Ao receber uma string como prop ela precisa aparecer na tela', () => {
-
+    render(<Item content="Exercitar-se" />);
+    const item = screen.getByText('Exercitar-se');
+    expect(item).toBeInTheDocument();
   })
 })
