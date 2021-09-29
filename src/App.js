@@ -12,6 +12,8 @@ class App extends Component {
     };
 
     this.addTodo = this.addTodo.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.selectTask = this.selectTask.bind(this);
   }
 
   addTodo(todo) {
@@ -27,17 +29,24 @@ class App extends Component {
     });
   }
 
+  selectTask({ target }) {
+    const { innerHTML } = target;
+    this.setState((state) => ({
+      selected: state.selected === innerHTML ? null : innerHTML,
+    }));
+  }
+
   render() {
-    const { listTodo } = this.state;
+    const { listTodo, selected } = this.state;
     return (
       <div className="App">
-        <InputTodo addTodo={(todo) => this.addTodo(todo)} />
+        <InputTodo addTodo={(todo) => this.addTodo(todo)} removeItem={ this.removeItem } selected={ selected } />
         {listTodo &&
           <ul>
             {
               listTodo.map((todo, index) => (
                 <li key={index + 1}>
-                  <Item content={todo} />
+                  <Item content={todo} handleClick={ this.selectTask } />
                 </li>
               ))
             }
