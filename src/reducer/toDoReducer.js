@@ -1,4 +1,4 @@
-import { ADD_TODO, MARK_AS_COMPĹETE, REMOVE_TODO, SELECT_TODO } from "../actions";
+import { ADD_TODO, MARK_AS_COMPĹETE, MARK_AS_ONGOING, REMOVE_TODO, SELECT_TODO } from "../actions";
 
 const INITIAL_STATE = {
   listToDo: {},
@@ -31,6 +31,12 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       };
     case MARK_AS_COMPĹETE:
       returnList[toDo].completed = true;
+      return {
+        listToDo: returnList,
+        selected: '',
+      };
+    case MARK_AS_ONGOING:
+      returnList[toDo].ongoing = true;
       return {
         listToDo: returnList,
         selected: '',
