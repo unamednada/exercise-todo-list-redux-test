@@ -6,17 +6,19 @@ const INITIAL_STATE = {
 };
 
 const toDoReducer = (state = INITIAL_STATE, action) => {
+  const returnList = Object.assign({}, { ...state.listToDo });
   switch(action.type) {
     case ADD_TODO:
+      const { toDo } = action;
+      returnList[toDo] = {
+        completed: false,
+        ongoing: false,
+      };
       return {
         ...state,
-        listToDo: Object.assign({}, ...state.listToDo, { [action.toDo]: {
-          completed: false,
-          ongoing: false,
-        }}),
+        listToDo: returnList,
       };
     case REMOVE_TODO:
-      const returnList = Object.assign({}, { ...state.listToDo });
       delete returnList[action.toDo];
       return {
         listToDo: returnList,

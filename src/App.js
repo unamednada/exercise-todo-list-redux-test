@@ -7,13 +7,14 @@ import PropTypes from 'prop-types';
 class App extends Component {
   render() {
     const { listToDo } = this.props;
+    const arrayToDo = Object.keys(listToDo);
     return (
       <div className="App">
         <InputToDo />
-        {listToDo &&
+        {arrayToDo.length > 0 &&
           <ul>
             {
-              listToDo.map((toDo, index) => (
+              arrayToDo.map((toDo, index) => (
                 <li key={index + 1}>
                   <Item content={toDo} />
                 </li>
@@ -33,5 +34,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(App);
 
 App.propTypes = {
-  listToDo: PropTypes.arrayOf(PropTypes.string),
+  listToDo: PropTypes.object,
 };
