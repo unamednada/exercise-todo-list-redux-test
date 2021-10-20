@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO } from "../actions";
+import { ADD_TODO, REMOVE_TODO, SELECT_TODO } from "../actions";
 
 const INITIAL_STATE = {
   listToDo: [],
@@ -13,10 +13,15 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
         listToDo: [...state.listToDo, action.toDo]
       };
     case REMOVE_TODO:
-      return [
+      return {
+        ...state,
+        listToDo: [
         ...state.listToDo.split(0, state.listToDo.indexOf(action.toDo)),
-        ...state.listToDo.split(state.listToDo.indexOf(action.toDo) + 1, state.length)
-      ];
+        ...state.listToDo.split(state.listToDo.indexOf(action.toDo) + 1, state.listToDo.length)
+        ],
+      };
+    case SELECT_TODO:
+      return 
     default:
       return state;
   }
