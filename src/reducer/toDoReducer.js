@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, SELECT_TODO } from "../actions";
+import { ADD_TODO, MARK_AS_COMPĹETE, REMOVE_TODO, SELECT_TODO } from "../actions";
 
 const INITIAL_STATE = {
   listToDo: {},
@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 
 const toDoReducer = (state = INITIAL_STATE, action) => {
   const returnList = Object.assign({}, { ...state.listToDo });
+  const { toDo } = action;
   switch(action.type) {
     case ADD_TODO:
-      const { toDo } = action;
       returnList[toDo] = {
         completed: false,
         ongoing: false,
@@ -28,6 +28,12 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       return  {
         ...state,
         selected: action.toDo,
+      };
+    case MARK_AS_COMPĹETE:
+      returnList[toDo].completed = true;
+      return {
+        listToDo: returnList,
+        selected: '',
       }
     default:
       return state;
