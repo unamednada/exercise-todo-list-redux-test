@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputToDo from './InputToDo';
 import Item from './Item';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   render() {
@@ -30,3 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+  listToDo: PropTypes.arrayOf(PropTypes.string),
+};
