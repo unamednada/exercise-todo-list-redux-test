@@ -12,9 +12,9 @@ class App extends Component {
         {listToDo &&
           <ul>
             {
-              listToDo.map((todo, index) => (
+              listToDo.map((toDo, index) => (
                 <li key={index + 1}>
-                  <Item content={todo} handleClick={ this.selectTask } />
+                  <Item content={toDo} />
                 </li>
               ))
             }
