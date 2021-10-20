@@ -31,12 +31,14 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       };
     case MARK_AS_COMPĹETE:
       returnList[toDo].completed = true;
+      returnList[toDo].ongoing = false;
       return {
         listToDo: returnList,
         selected: '',
       };
     case MARK_AS_ONGOING:
       returnList[toDo].ongoing = true;
+      returnList[toDo].ongoing = false;
       return {
         listToDo: returnList,
         selected: '',
