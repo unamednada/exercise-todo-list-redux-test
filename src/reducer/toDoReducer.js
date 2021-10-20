@@ -16,11 +16,10 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
         }}),
       };
     case REMOVE_TODO:
+      const returnList = Object.assign({}, { ...state.listToDo });
+      delete returnList[action.toDo];
       return {
-        listToDo: [
-        ...state.listToDo.splice(0, state.listToDo.indexOf(action.toDo)),
-        ...state.listToDo.splice(state.listToDo.indexOf(action.toDo) + 1, state.listToDo.length)
-        ],
+        listToDo: returnList,
         selected: '',
       };
     case SELECT_TODO:
