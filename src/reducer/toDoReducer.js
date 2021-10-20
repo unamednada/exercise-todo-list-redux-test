@@ -2,7 +2,7 @@ import { ADD_TODO, REMOVE_TODO, SELECT_TODO } from "../actions";
 
 const INITIAL_STATE = {
   listToDo: [],
-  selected: null,
+  selected: '',
 };
 
 const toDoReducer = (state = INITIAL_STATE, action) => {
@@ -14,11 +14,11 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       };
     case REMOVE_TODO:
       return {
-        ...state,
         listToDo: [
-        ...state.listToDo.split(0, state.listToDo.indexOf(action.toDo)),
-        ...state.listToDo.split(state.listToDo.indexOf(action.toDo) + 1, state.listToDo.length)
+        ...state.listToDo.splice(0, state.listToDo.indexOf(action.toDo)),
+        ...state.listToDo.splice(state.listToDo.indexOf(action.toDo) + 1, state.listToDo.length)
         ],
+        selected: '',
       };
     case SELECT_TODO:
       return  {

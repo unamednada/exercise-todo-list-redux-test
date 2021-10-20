@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  selected: state.selected,
+  selected: state.toDoReducer.selected,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputToDo);
