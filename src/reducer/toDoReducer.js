@@ -1,7 +1,7 @@
 import { ADD_TODO, REMOVE_TODO, SELECT_TODO } from "../actions";
 
 const INITIAL_STATE = {
-  listToDo: [],
+  listToDo: {},
   selected: '',
 };
 
@@ -10,7 +10,10 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
     case ADD_TODO:
       return {
         ...state,
-        listToDo: [...state.listToDo, action.toDo]
+        listToDo: Object.assign({}, ...state.listToDo, { [action.toDo]: {
+          completed: false,
+          ongoing: false,
+        }}),
       };
     case REMOVE_TODO:
       return {
