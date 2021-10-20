@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addToDo as addAction } from './actions';
 import { removeToDo as removeAction } from './actions';
+import { markAsComplete as completeAction } from './actions';
 import { connect } from 'react-redux';
 
 class InputToDo extends Component {
@@ -19,7 +20,7 @@ class InputToDo extends Component {
   }
 
   render() {
-    const { addToDo, removeToDo, selected } = this.props;
+    const { addToDo, removeToDo, markAsComplete, selected } = this.props;
     const { textTodo } = this.state;
     return (
       <div className="InputTodo">
@@ -35,6 +36,7 @@ class InputToDo extends Component {
           this.setState({ textTodo: '' });
         } } />
         <input id="btnRemove"data-testid="id-remove" type="button" value="Remover" onClick={ () => removeToDo(selected) } disabled={ selected.length === 0 } />
+        <input id="btnComplete"data-testid="id-complete" type="button" value="Completar" onClick={ () => markAsComplete(selected) } disabled={ selected.length === 0 } />
       </div>
     );
   }
@@ -43,6 +45,7 @@ class InputToDo extends Component {
 const mapDispatchToProps = (dispatch) => ({
   addToDo: (toDo) => dispatch(addAction(toDo)),
   removeToDo: (toDo) => dispatch(removeAction(toDo)),
+  markAsComplete: (toDo) => dispatch(completeAction(toDo)),
 });
 
 const mapStateToProps = (state) => ({
@@ -54,6 +57,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(InputToDo);
 InputToDo.propTypes = {
   addToDo: PropTypes.func.isRequired,
   removeToDo: PropTypes.func.isRequired,
+  markAsComplete: PropTypes.func.isRequired,
   selected: PropTypes.string,
 };
 
