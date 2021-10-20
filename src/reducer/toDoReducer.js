@@ -21,7 +21,10 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
         ],
       };
     case SELECT_TODO:
-      return 
+      return  {
+        ...state,
+        selected: action.toDo,
+      }
     default:
       return state;
   }
