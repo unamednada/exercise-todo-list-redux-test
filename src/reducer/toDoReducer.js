@@ -8,8 +8,8 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       return [...state, action.todo];
     case REMOVE_TODO:
       return [
-        ...state.split(0, action.todo),
-        ...state.split(action.todo + 1, state.length)
+        ...state.split(0, state.indexOf(action.todo)),
+        ...state.split(state.indexOf(action.todo) + 1, state.length)
       ];
     default:
       return state;
