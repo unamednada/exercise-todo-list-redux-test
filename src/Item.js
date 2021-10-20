@@ -1,17 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { selectToDo } from './actions';
+import { connect } from 'react-redux';
 
 function Item(props) {
-  const { content, handleClick } = props
+  const { content, selectToDo } = props;
   return (
-    <div className="Item" onClick={ (e) => handleClick(e) }>
+    <div className="Item" onClick={ () => selectToDo(content) }>
       {content}
     </div>
   );
-}
+};
 
-export default Item;
+const mapDispatchToProps = (dispatch) => ({
+  selectToDo: (toDo) => dispatch(selectToDo(toDo)),
+});
+
+export default connect(null, mapDispatchToProps)(Item);
 
 Item.propTypes = {
   content: PropTypes.string.isRequired,
+  selectToDo: PropTypes.func.isRequired,
 }
