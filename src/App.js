@@ -26,7 +26,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  listToDo: state,
+  listToDo: state.listToDo,
 });
 
 export default connect(mapStateToProps)(App);
