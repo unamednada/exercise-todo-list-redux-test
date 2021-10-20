@@ -38,7 +38,7 @@ const toDoReducer = (state = INITIAL_STATE, action) => {
       };
     case MARK_AS_ONGOING:
       returnList[toDo].ongoing = true;
-      returnList[toDo].ongoing = false;
+      returnList[toDo].completed = false;
       return {
         listToDo: returnList,
         selected: '',
