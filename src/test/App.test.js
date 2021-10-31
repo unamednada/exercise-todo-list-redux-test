@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from '../App';
+import renderWithRedux from '../util';
 
 describe('Testando a aplicação, testando input', () => {
-  const { getByLabelText, getByText } = render(<App />)
+  const { getByLabelText, getByText } = renderWithRedux(<App />)
   const inputTask = getByLabelText('Tarefa:');
   const labelTask = getByText('Tarefa:');
   test('Verificando se o label e o input existem no documento', () => {
